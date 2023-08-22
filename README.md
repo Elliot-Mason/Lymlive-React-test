@@ -2,7 +2,8 @@
 Test repository for testing the stripping, reading, and output of the Lymlive screen40 data.json file
 
 ## How to run
-Run with npm start
+From the command line when in the react-app folder run: 
+```npm start```
 
 React should then load in localhost 3000 or 5500.
 
