@@ -1,22 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useEffect, useState } from 'react';
 
 function App() {
+  const [jsonData, setJsonData] = useState(null);
+
+  useEffect(() => {
+    // Fetch the JSON data from the file
+    fetch('./data.json')
+      .then(response => response.text()) // Read the file content as text
+      .then(text => {
+        // Remove the "var clientData =" prefix
+        const jsonDataText = text.replace('var clientData =', '');
+
+        try {
+          // Parse the JSON data
+          const parsedData = JSON.parse(jsonDataText);
+
+          // Display the JSON data in the console
+          console.log(parsedData);
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching JSON:', error);
+      });
+  }, []);
+
+
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div>hi</div>
+      {jsonData !== null && (
+        <pre id="disjson">{JSON.stringify(jsonData, null, 2)}</pre>
+      )}
       </header>
     </div>
   );
