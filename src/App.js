@@ -5,6 +5,7 @@ function App() {
   const [jsonData, setJsonData] = useState(null);
 
   useEffect(() => {
+
     // Fetch the JSON data from the file
     fetch('./data.json')
       .then(response => response.text()) // Read the file content as text
@@ -18,6 +19,7 @@ function App() {
 
           // Display the JSON data in the console
           console.log(parsedData);
+          setJsonData(parsedData);
         } catch (error) {
           console.error('Error parsing JSON:', error);
         }
@@ -32,7 +34,6 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div>hi</div>
       {jsonData !== null && (
         <pre id="disjson">{JSON.stringify(jsonData, null, 2)}</pre>
       )}
